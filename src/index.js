@@ -2,15 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "tachyons";
 
-import CardList from "./components/CardList";
-import { robots } from "./data/robots";
-
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-
-function App() {
-  return <CardList robots={robots} />;
-}
+import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

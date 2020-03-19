@@ -4,6 +4,9 @@ I took some liberties in some parts of the code, implementing it my way. When it
 
 Another thing I would like to add is typechecking (for example, [Flow](https://flow.org/)), but I did not do it due to time constraints.
 
+I also did not do test driven development since these lessons did not cover tests.
+
+
 # Default create-react-app information
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
