@@ -1,3 +1,11 @@
+This project was created for [The Complete Junior to Senior Web Developer Roadmap (2020)](https://www.udemy.com/course/the-complete-junior-to-senior-web-developer-roadmap/) online course.
+
+I took some liberties in some parts of the code, implementing it my way. When it comes to CSS styling, I used [tachyons](https://tachyons.io/) like the course lecturer because it was time consuming to find the respective CSS styles for each abbreviation he used. I personally do not like this approach as it is not readable and it requires the reader to be familiar with this specific library.
+
+Another thing I would like to add is typechecking (for example, [Flow](https://flow.org/)), but I did not do it due to time constraints.
+
+# Default create-react-app information
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
