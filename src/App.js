@@ -5,33 +5,25 @@ import CardList from "./components/CardList";
 import Header from "./components/Header";
 import SearchBox from "./components/SearchBox";
 
-class App extends React.Component {
-  constructor() {
-    super();
+function App() {
+  const [searchField, setSearchField] = React.useState("");
+  const [displayedRobots, setDisplayedRobots] = React.useState(robots);
 
-    this.state = {
-      robots: robots,
-      searchField: ""
-    };
-  }
-
-  onSearchChange = event => {
-    this.setState({ searchField: event.target.value });
-  };
-
-  render() {
-    const filteredRobots = this.state.robots.filter(robot =>
-      robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+  React.useEffect(() => {
+    console.log(searchField);
+    const filtered = robots.filter(robot =>
+      robot.name.toLowerCase().includes(searchField.toLowerCase())
     );
+    setDisplayedRobots(filtered);
+  }, [searchField]);
 
-    return (
-      <div className="tc">
-        <Header />
-        <SearchBox onSearchChange={this.onSearchChange} />
-        <CardList robots={filteredRobots} />
-      </div>
-    );
-  }
+  return (
+    <div className="tc">
+      <Header />
+      <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
+      <CardList robots={displayedRobots} />
+    </div>
+  );
 }
 
 export default App;
