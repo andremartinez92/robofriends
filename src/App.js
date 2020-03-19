@@ -3,29 +3,38 @@
 import React from 'react';
 
 import './App.css';
-import { robots, type RobotData } from './data/robots';
+import { type RobotData } from './types';
 import CardList from './components/CardList';
 import Header from './components/Header';
 import SearchBox from './components/SearchBox';
+import filterRobotsBySearch from './logic/filterRobotsBySearch';
 
 function App() {
+  const [robots, setRobots] = React.useState([]);
   const [searchField, setSearchField] = React.useState('');
-  const [displayedRobots, setDisplayedRobots] = React.useState(robots);
 
   React.useEffect(() => {
-    console.log(searchField);
-    const filtered: RobotData[] = robots.filter((robot: RobotData) =>
-      robot.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    async function fetchData() {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users'
+      );
 
-    setDisplayedRobots(filtered);
-  }, [searchField]);
+      response.json().then(robots => setRobots(robots));
+    }
+
+    fetchData();
+  }, []);
+
+  const memoizedFilteredRobots: RobotData[] = React.useMemo(
+    () => filterRobotsBySearch(robots, searchField),
+    [robots, searchField]
+  );
 
   return (
     <div className="tc">
       <Header />
       <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
-      <CardList robots={displayedRobots} />
+      <CardList robots={memoizedFilteredRobots} />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { type RobotData } from '../data/robots';
+import { type RobotData } from '../types';
 
 import Card from './Card';
 
