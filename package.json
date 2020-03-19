@@ -33,7 +33,7 @@
     }
   },
   "lint-staged": {
-    "*.js": "react-scripts test && flow focus-check"
+    "*.js": "flow focus-check"
   },
   "eslintConfig": {
     "extends": "react-app"

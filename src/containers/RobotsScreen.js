@@ -26,17 +26,14 @@ function RobotsScreen() {
     fetchData();
   }, []);
 
-  const memoizedFilteredRobots: RobotData[] = React.useMemo(
-    () => filterRobotsBySearch(robots, searchField),
-    [robots, searchField]
-  );
+  const filteredRobots: RobotData[] = filterRobotsBySearch(robots, searchField);
 
   return (
     <div className="tc">
       <Header />
       <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
       <ScrollableSection>
-        <CardList robots={memoizedFilteredRobots} />
+        <CardList robots={filteredRobots} />
       </ScrollableSection>
     </div>
   );
