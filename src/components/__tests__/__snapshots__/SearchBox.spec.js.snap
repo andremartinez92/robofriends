@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBox> renders the expected component 1`] = `
+<div
+  className="pa2"
+>
+  <input
+    className="pa3 ba b--green bg-lightest-blue"
+    onChange={[MockFunction]}
+    placeholder="search robots"
+    type="search"
+  />
+</div>
+`;
