@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
@@ -17,7 +15,9 @@
     "flow-bin": "^0.121.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
-    "react-test-renderer": "^16.13.0"
+    "react-test-renderer": "^16.13.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,7 +32,7 @@
     }
   },
   "lint-staged": {
-    "*.js": "flow focus-check"
+    "*.js": "react-scripts test && flow focus-check"
   },
   "eslintConfig": {
     "extends": "react-app"
