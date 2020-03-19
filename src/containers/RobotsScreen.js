@@ -2,14 +2,15 @@
 
 import React from 'react';
 
-import './App.css';
-import { type RobotData } from './types';
-import CardList from './components/CardList';
-import Header from './components/Header';
-import SearchBox from './components/SearchBox';
-import filterRobotsBySearch from './logic/filterRobotsBySearch';
+import './RobotsScreen.css';
+import { type RobotData } from '../types';
+import CardList from '../components/CardList';
+import Header from '../components/Header';
+import SearchBox from '../components/SearchBox';
+import ScrollableSection from '../components/ScrollableSection';
+import filterRobotsBySearch from '../logic/filterRobotsBySearch';
 
-function App() {
+function RobotsScreen() {
   const [robots, setRobots] = React.useState([]);
   const [searchField, setSearchField] = React.useState('');
 
@@ -18,8 +19,8 @@ function App() {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/users'
       );
-
-      response.json().then(robots => setRobots(robots));
+      const robots = await response.json();
+      setRobots(robots);
     }
 
     fetchData();
@@ -34,9 +35,11 @@ function App() {
     <div className="tc">
       <Header />
       <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
-      <CardList robots={memoizedFilteredRobots} />
+      <ScrollableSection>
+        <CardList robots={memoizedFilteredRobots} />
+      </ScrollableSection>
     </div>
   );
 }
 
-export default App;
+export default RobotsScreen;

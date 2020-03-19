@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ScrollableSection> when has multiple children renders the expected component 1`] = `
+<div
+  style={
+    Object {
+      "border": "5px solid black",
+      "overflow": "scroll",
+    }
+  }
+>
+  <div>
+    Hello
+  </div>
+  <div>
+    World
+  </div>
+</div>
+`;
+
+exports[`<ScrollableSection> when has no children renders the expected component 1`] = `
+<div
+  style={
+    Object {
+      "border": "5px solid black",
+      "overflow": "scroll",
+    }
+  }
+/>
+`;
+
+exports[`<ScrollableSection> when has one child renders the expected component 1`] = `
+<div
+  style={
+    Object {
+      "border": "5px solid black",
+      "overflow": "scroll",
+    }
+  }
+>
+  <div>
+    Hello
+  </div>
+</div>
+`;

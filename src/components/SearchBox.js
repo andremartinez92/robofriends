@@ -14,7 +14,7 @@ function SearchBox(props: Props) {
       <input
         className="pa3 ba b--green bg-lightest-blue"
         onChange={onSearchChange}
-        placeholder="search robots"
+        placeholder="Search robots"
         type="search"
       />
     </div>
