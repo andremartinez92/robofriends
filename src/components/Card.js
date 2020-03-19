@@ -1,6 +1,14 @@
-import React from "react";
+// @flow
 
-function Card(props) {
+import React from 'react';
+
+type Props = {
+  email: string,
+  id: number,
+  name: string,
+};
+
+function Card(props: Props) {
   const { email, id, name } = props;
 
   return (

@@ -1,9 +1,18 @@
-import React from "react";
+// @flow
 
-import Card from "./Card";
+import React from 'react';
 
-function CardList(props) {
+import { type RobotData } from '../data/robots';
+
+import Card from './Card';
+
+type Props = {
+  robots: RobotData[],
+};
+
+function CardList(props: Props) {
   const { robots } = props;
+
   return (
     <React.Fragment>
       {robots.map(robot => (

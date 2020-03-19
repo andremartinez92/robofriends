@@ -1,4 +1,6 @@
-import React from "react";
+// @flow
+
+import React from 'react';
 
 function Header() {
   return <h1>Robofriends</h1>;

@@ -1,19 +1,22 @@
-import React from "react";
+// @flow
 
-import { robots } from "./data/robots";
-import CardList from "./components/CardList";
-import Header from "./components/Header";
-import SearchBox from "./components/SearchBox";
+import React from 'react';
+
+import { robots, type RobotData } from './data/robots';
+import CardList from './components/CardList';
+import Header from './components/Header';
+import SearchBox from './components/SearchBox';
 
 function App() {
-  const [searchField, setSearchField] = React.useState("");
+  const [searchField, setSearchField] = React.useState('');
   const [displayedRobots, setDisplayedRobots] = React.useState(robots);
 
   React.useEffect(() => {
     console.log(searchField);
-    const filtered = robots.filter(robot =>
+    const filtered: RobotData[] = robots.filter((robot: RobotData) =>
       robot.name.toLowerCase().includes(searchField.toLowerCase())
     );
+
     setDisplayedRobots(filtered);
   }, [searchField]);
 

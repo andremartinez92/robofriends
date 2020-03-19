@@ -1,6 +1,12 @@
-import React from "react";
+// @flow
 
-function SearchBox(props) {
+import React from 'react';
+
+type Props = {
+  onSearchChange: Function,
+};
+
+function SearchBox(props: Props) {
   const { onSearchChange } = props;
 
   return (
