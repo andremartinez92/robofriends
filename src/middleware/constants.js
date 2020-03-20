@@ -1,0 +1,3 @@
+// @flow
+
+export const CHANGE_SEARCH_FIELD_TYPE = 'CHANGE_SEARCH_FIELD';

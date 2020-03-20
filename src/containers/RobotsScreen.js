@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
 import ScrollableSection from '../components/ScrollableSection';
 import ErrorBoundary from '../components/ErrorBoundary';
-import filterRobotsBySearch from '../logic/filterRobotsBySearch';
+import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 
 function RobotsScreen() {
   const [robots, setRobots] = React.useState<RobotData[]>([]);
