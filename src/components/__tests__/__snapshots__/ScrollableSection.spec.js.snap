@@ -4,7 +4,7 @@ exports[`<ScrollableSection> when has multiple children renders the expected com
 <div
   style={
     Object {
-      "border": "5px solid black",
+      "height": "800px",
       "overflow": "scroll",
     }
   }
@@ -22,7 +22,7 @@ exports[`<ScrollableSection> when has no children renders the expected component
 <div
   style={
     Object {
-      "border": "5px solid black",
+      "height": "800px",
       "overflow": "scroll",
     }
   }
@@ -33,7 +33,7 @@ exports[`<ScrollableSection> when has one child renders the expected component 1
 <div
   style={
     Object {
-      "border": "5px solid black",
+      "height": "800px",
       "overflow": "scroll",
     }
   }

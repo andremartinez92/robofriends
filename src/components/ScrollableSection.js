@@ -4,7 +4,7 @@ import React from 'react';
 
 const styles = {
   overflow: 'scroll',
-  border: '5px solid black',
+  height: '800px',
 };
 
 type Props = {
