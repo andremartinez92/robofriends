@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 
 import CardList from '../CardList';
 
@@ -20,7 +20,7 @@ describe('<CardList>', () => {
   };
 
   it('renders the expected component', () => {
-    const tree = renderer.create(<CardList {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const subject = shallow(<CardList {...props} />);
+    expect(subject).toMatchSnapshot();
   });
 });

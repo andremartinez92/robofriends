@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 import SearchBox from '../SearchBox';
@@ -8,11 +7,9 @@ const onSearchChange = jest.fn();
 
 describe('<SearchBox>', () => {
   it('renders the expected component', () => {
-    const tree = renderer
-      .create(<SearchBox onSearchChange={onSearchChange} />)
-      .toJSON();
+    const subject = shallow(<SearchBox onSearchChange={onSearchChange} />);
 
-    expect(tree).toMatchSnapshot();
+    expect(subject).toMatchSnapshot();
   });
 
   describe('.onSearchChange', () => {
