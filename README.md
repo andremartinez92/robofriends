@@ -2,8 +2,14 @@ This project was created for [The Complete Junior to Senior Web Developer Roadma
 
 I took some liberties in some parts of the code, implementing it my way. When it comes to CSS styling, I used [tachyons](https://tachyons.io/) like the course lecturer because it was time consuming to find the respective CSS styles for each abbreviation he used. I personally do not like this approach as it is not readable and it requires the reader to be familiar with this specific library.
 
-I also did not do test driven development since these lessons did not cover tests.
+Main changes relative to the [original exercise](https://github.com/aneagoie/robofriends):
+- Use of React hooks instead of classes when justifiable;
+- Testing;
+- Typechecking;
+- Testing and typechecking triggered on pre-commit hook.
 
+## Deploying to Github Pages
+Run `yarn run deploy`.
 
 # Default create-react-app information
 
