@@ -8,10 +8,11 @@ import CardList from '../components/CardList';
 import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
 import ScrollableSection from '../components/ScrollableSection';
+import ErrorBoundary from '../components/ErrorBoundary';
 import filterRobotsBySearch from '../logic/filterRobotsBySearch';
 
 function RobotsScreen() {
-  const [robots, setRobots] = React.useState([]);
+  const [robots, setRobots] = React.useState<RobotData[]>([]);
   const [searchField, setSearchField] = React.useState('');
 
   React.useEffect(() => {
@@ -33,7 +34,9 @@ function RobotsScreen() {
       <Header />
       <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
       <ScrollableSection>
-        <CardList robots={filteredRobots} />
+        <ErrorBoundary>
+          <CardList robots={filteredRobots} />
+        </ErrorBoundary>
       </ScrollableSection>
     </div>
   );
