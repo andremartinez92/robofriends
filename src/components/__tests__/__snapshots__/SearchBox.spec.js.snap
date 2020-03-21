@@ -6,7 +6,7 @@ exports[`<SearchBox> renders the expected component 1`] = `
 >
   <input
     className="pa3 ba b--green bg-lightest-blue"
-    onChange={[MockFunction]}
+    onChange={[Function]}
     placeholder="Search robots"
     type="search"
   />

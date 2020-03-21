@@ -9,10 +9,7 @@ type State = {
 
 const initialState: State = { searchField: '' };
 
-function searchRobotsReducer(
-  state: State = initialState,
-  action: Action
-): State {
+function searchRobots(state: State = initialState, action: Action = {}): State {
   switch (action.type) {
     case CHANGE_SEARCH_FIELD_TYPE:
       return { ...state, searchField: action.payload.searchField };
@@ -22,4 +19,4 @@ function searchRobotsReducer(
   }
 }
 
-export default searchRobotsReducer;
+export default searchRobots;

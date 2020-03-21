@@ -21,11 +21,11 @@ describe('<SearchBox>', () => {
         target: { value: 'new search text' },
       };
 
-      it('calls .onSearchChange with the expected arguments', () => {
+      it('calls .onSearchChange with the search text', () => {
         subject.find('input').simulate('change', event);
 
         expect(onSearchChange).toHaveBeenCalledTimes(1);
-        expect(onSearchChange).toHaveBeenCalledWith(event);
+        expect(onSearchChange).toHaveBeenCalledWith('new search text');
       });
     });
   });

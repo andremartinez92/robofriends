@@ -1,18 +1,33 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+
 import RobotsScreen from '../RobotsScreen';
 
+const initialState = { searchField: '' };
+
+function createWrapper(store) {
+  return mount(
+    <Provider store={store}>
+      <RobotsScreen />
+    </Provider>
+  );
+}
+
 describe('<RobotsScreen>', () => {
+  let mockStore;
   beforeEach(() => {
     fetch.resetMocks();
+    mockStore = configureMockStore([])(initialState);
   });
 
   describe('when mounted', () => {
     it('fetches the data from the expected URL', async () => {
       fetch.mockResponse(JSON.stringify([]));
       await ReactTestUtils.act(async () => {
-        mount(<RobotsScreen />);
+        createWrapper(mockStore);
       });
 
       expect(fetch.mock.calls.length).toEqual(1);
@@ -25,11 +40,12 @@ describe('<RobotsScreen>', () => {
   describe('when receives empty data from URL', () => {
     it('renders correctly', async () => {
       fetch.mockResponse(JSON.stringify([]));
-      let subject;
+      let wrapper;
       await ReactTestUtils.act(async () => {
-        subject = mount(<RobotsScreen />);
+        wrapper = createWrapper(mockStore);
       });
 
+      const subject = wrapper.find('RobotsScreen');
       expect(subject).toMatchSnapshot();
       expect(subject.find('Card')).toHaveLength(0);
     });
@@ -42,47 +58,55 @@ describe('<RobotsScreen>', () => {
       { name: 'robot', email: 'email@email3.com', id: 3 },
     ];
 
-    describe('when no search is applied', () => {
+    describe('when search field is empty', () => {
       it('renders all results', async () => {
         fetch.mockResponse(JSON.stringify(data));
-        let subject;
+        let wrapper;
         await ReactTestUtils.act(async () => {
-          subject = mount(<RobotsScreen />);
+          wrapper = createWrapper(mockStore);
         });
 
-        await ReactTestUtils.act(async () => {
-          subject.update();
-        });
+        wrapper.update();
 
-        expect(subject).toMatchSnapshot();
-        expect(subject.find('Card')).toHaveLength(3);
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('Card')).toHaveLength(3);
       });
     });
 
-    describe('when search is applied', () => {
-      const event = {
-        preventDefault() {},
-        target: { value: 'a' },
-      };
-
+    describe('when search field has text', () => {
       it('renders only results that match search', async () => {
+        mockStore = configureMockStore([])({ searchField: 'a' });
+
         fetch.mockResponse(JSON.stringify(data));
-        let subject;
+        let wrapper;
         await ReactTestUtils.act(async () => {
-          subject = mount(<RobotsScreen />);
+          wrapper = createWrapper(mockStore);
         });
 
+        wrapper.update();
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('Card')).toHaveLength(2);
+      });
+    });
+
+    describe('when search field is changed', () => {
+      it('dispatches the expected action', async () => {
+        fetch.mockResponse(JSON.stringify(data));
+        const spy = jest.spyOn(mockStore, 'dispatch');
+
+        let wrapper;
         await ReactTestUtils.act(async () => {
-          subject.update();
-          subject.find('input').simulate('change', event);
+          wrapper = createWrapper(mockStore);
         });
 
-        await ReactTestUtils.act(async () => {
-          subject.update();
-        });
+        const { onSearchChange } = wrapper.find('SearchBox').props();
+        onSearchChange('a');
 
-        expect(subject).toMatchSnapshot();
-        expect(subject.find('Card')).toHaveLength(2);
+        expect(spy).toHaveBeenCalledWith({
+          payload: { searchField: 'a' },
+          type: 'CHANGE_SEARCH_FIELD',
+        });
       });
     });
   });

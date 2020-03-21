@@ -13,7 +13,7 @@ function SearchBox(props: Props) {
     <div className="pa2">
       <input
         className="pa3 ba b--green bg-lightest-blue"
-        onChange={onSearchChange}
+        onChange={event => onSearchChange(event.target.value)}
         placeholder="Search robots"
         type="search"
       />

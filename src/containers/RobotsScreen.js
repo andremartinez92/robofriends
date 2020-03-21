@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './RobotsScreen.css';
 import { type RobotData } from '../types';
@@ -11,9 +12,16 @@ import ScrollableSection from '../components/ScrollableSection';
 import ErrorBoundary from '../components/ErrorBoundary';
 import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 
+import { changeSearchField } from '../middleware/actions';
+
 function RobotsScreen() {
+  const dispatch = useDispatch();
   const [robots, setRobots] = React.useState<RobotData[]>([]);
-  const [searchField, setSearchField] = React.useState('');
+
+  const searchField: string = useSelector(state => state.searchField);
+
+  const setSearchField: Function = (searchField: string) =>
+    dispatch(changeSearchField(searchField));
 
   React.useEffect(() => {
     async function fetchData() {
@@ -32,7 +40,7 @@ function RobotsScreen() {
   return (
     <div className="tc">
       <Header />
-      <SearchBox onSearchChange={event => setSearchField(event.target.value)} />
+      <SearchBox onSearchChange={setSearchField} />
       <ScrollableSection>
         <ErrorBoundary>
           <CardList robots={filteredRobots} />
