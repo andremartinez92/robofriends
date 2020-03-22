@@ -12,28 +12,20 @@ import ScrollableSection from '../components/ScrollableSection';
 import ErrorBoundary from '../components/ErrorBoundary';
 import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 
-import { changeSearchField } from '../middleware/actions';
+import { changeSearchField, getRobots } from '../middleware/actions';
 
 function RobotsScreen() {
   const dispatch = useDispatch();
-  const [robots, setRobots] = React.useState<RobotData[]>([]);
 
-  const searchField: string = useSelector(state => state.searchField);
+  const searchField: string = useSelector(state => state.search.searchField);
+  const { isPending, robots } = useSelector(state => state.robots);
 
   const setSearchField: Function = (searchField: string) =>
     dispatch(changeSearchField(searchField));
 
   React.useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      const robots = await response.json();
-      setRobots(robots);
-    }
-
-    fetchData();
-  }, []);
+    dispatch(getRobots());
+  }, [dispatch]);
 
   const filteredRobots: RobotData[] = filterRobotsBySearch(robots, searchField);
 
@@ -41,11 +33,13 @@ function RobotsScreen() {
     <div className="tc">
       <Header />
       <SearchBox onSearchChange={setSearchField} />
-      <ScrollableSection>
-        <ErrorBoundary>
-          <CardList robots={filteredRobots} />
-        </ErrorBoundary>
-      </ScrollableSection>
+      {(isPending && <h1>Loading...</h1>) || (
+        <ScrollableSection>
+          <ErrorBoundary>
+            <CardList robots={filteredRobots} />
+          </ErrorBoundary>
+        </ScrollableSection>
+      )}
     </div>
   );
 }

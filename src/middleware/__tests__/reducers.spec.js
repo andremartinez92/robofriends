@@ -1,4 +1,4 @@
-import searchRobotsReducer from '../reducers';
+import { getRobotsReducer, searchRobotsReducer } from '../reducers';
 
 describe('searchRobotsReducer', () => {
   it('should return the initial state', () => {
@@ -27,13 +27,66 @@ describe('searchRobotsReducer', () => {
     ).toEqual({ searchField: 'abcdefg' });
   });
 
-  expect(
-    searchRobotsReducer(
-      { searchField: 'new text' },
-      {
-        type: 'UNMATCHED_TYPE',
-        payload: { searchField: 'abcdefg' },
-      }
-    )
-  ).toEqual({ searchField: 'new text' });
+  it('should handle default case', () => {
+    expect(
+      searchRobotsReducer(
+        { searchField: 'new text' },
+        {
+          type: 'UNMATCHED_TYPE',
+          payload: { searchField: 'abcdefg' },
+        }
+      )
+    ).toEqual({ searchField: 'new text' });
+  });
+});
+
+describe('getRobotsReducer', () => {
+  const initialState = {
+    isPending: false,
+    robots: [],
+    error: '',
+  };
+
+  const robots = [{ name: 'aa', id: 1, email: 'a@a.com' }];
+
+  it('should return the initial state', () => {
+    const store = getRobotsReducer(undefined, {});
+    expect(store).toEqual(initialState);
+  });
+
+  it.only('should handle GET_ROBOTS_REQUEST', () => {
+    const store = getRobotsReducer(undefined, {
+      type: 'GET_ROBOTS_REQUEST',
+      payload: {},
+    });
+
+    expect(store).toEqual({ ...initialState, isPending: true });
+  });
+
+  it('should handle GET_ROBOTS_SUCCESS', () => {
+    const store = getRobotsReducer(undefined, {
+      type: 'GET_ROBOTS_SUCCESS',
+      payload: { robots },
+    });
+
+    expect(store).toEqual({ ...initialState, robots });
+  });
+
+  it('should handle GET_ROBOTS_FAILURE', () => {
+    const error = 'some error';
+    const store = getRobotsReducer(undefined, {
+      type: 'GET_ROBOTS_FAILURE',
+      payload: { error },
+    });
+
+    expect(store).toEqual({ ...initialState, error });
+  });
+
+  it('should handle default case', () => {
+    const store = getRobotsReducer(
+      { robots },
+      { type: 'UNMATCHED_TYPE', payload: { robots: [] } }
+    );
+    expect(store).toEqual({ ...initialState, robots });
+  });
 });

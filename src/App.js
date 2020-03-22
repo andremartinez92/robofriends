@@ -1,14 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
 import './App.css';
-import searchRobots from './middleware/reducers';
+import rootReducer from './middleware/reducers';
 import RobotsScreen from './containers/RobotsScreen';
 
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
+  ? window.__REDUX_DEVTOOLS_EXTENSION__()
+  : f => f;
+
 const store: Object = createStore(
-  searchRobots,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  compose(applyMiddleware(thunkMiddleware), reduxDevTools)
 );
 
 function App() {
