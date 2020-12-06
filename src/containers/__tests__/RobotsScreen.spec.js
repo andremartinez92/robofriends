@@ -3,10 +3,9 @@ import { mount } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import rootReducer from '../../middleware/reducers';
-import { NO_DATA_TEXT, ROBO1_TEXT, ROBOTS, ROBOTS_TEXT, TITLE_TEXT } from '../RobotsTestHelpers';
+import { NO_DATA_TEXT, ROBO1_TEXT, ROBOTS, ROBOTS_TEXT, TITLE_TEXT } from '../../testHelpers/RobotsTestHelpers';
 
 import RobotsScreen from '../RobotsScreen';
 
@@ -15,8 +14,8 @@ const initialState = {
   robots: { isPending: false, robots: [] },
 };
 
-function createMockStore(initialState) {
-  return createStore(rootReducer, initialState, applyMiddleware(thunk))
+function createMockStore(state) {
+  return createStore(rootReducer, state, applyMiddleware(thunk))
 }
 
 function createWrapper(store) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ReactTestUtils from 'react-dom/test-utils';
-import { LOADING_TEXT, NO_DATA_TEXT, ROBOTS, ROBOTS_TEXT } from '../RobotsTestHelpers';
+import { LOADING_TEXT, NO_DATA_TEXT, ROBOTS, ROBOTS_TEXT } from '../../testHelpers/RobotsTestHelpers';
 
 import RobotsList from '../RobotsList';
 

@@ -11,7 +11,7 @@ export function changeSearchField(searchField: string): Action {
 export function getRobots() {
   return (dispatch: Dispatch) => {
     dispatch({ type: GET_ROBOTS_TYPES.REQUEST, payload: {} });
-    fetch('https://jsonplaceholder.typicode.com/users')
+    return fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(data =>
         dispatch({ type: GET_ROBOTS_TYPES.SUCCESS, payload: { robots: data } })
