@@ -6,7 +6,10 @@ import configureMockStore from 'redux-mock-store';
 
 import RobotsScreen from '../RobotsScreen';
 
-const initialState = { searchField: '' };
+const initialState = {
+  search: { searchField: '' },
+  robots: { isPending: false, robots: [] },
+};
 
 function createWrapper(store) {
   return mount(

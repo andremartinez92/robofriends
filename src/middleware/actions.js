@@ -3,7 +3,12 @@
 import { type Dispatch } from 'redux';
 import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
 
-export function changeSearchField(searchField: string) {
+type Action = {
+  type: string,
+  payload: Object
+}
+
+export function changeSearchField(searchField: string): Action {
   return { type: CHANGE_SEARCH_FIELD_TYPE, payload: { searchField } };
 }
 

@@ -54,7 +54,7 @@ describe('getRobotsReducer', () => {
     expect(store).toEqual(initialState);
   });
 
-  it.only('should handle GET_ROBOTS_REQUEST', () => {
+  it('should handle GET_ROBOTS_REQUEST', () => {
     const store = getRobotsReducer(undefined, {
       type: 'GET_ROBOTS_REQUEST',
       payload: {},
@@ -84,7 +84,7 @@ describe('getRobotsReducer', () => {
 
   it('should handle default case', () => {
     const store = getRobotsReducer(
-      { robots },
+      { ...initialState, robots },
       { type: 'UNMATCHED_TYPE', payload: { robots: [] } }
     );
     expect(store).toEqual({ ...initialState, robots });
