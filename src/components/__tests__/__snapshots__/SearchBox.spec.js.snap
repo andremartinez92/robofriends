@@ -5,6 +5,7 @@ exports[`<SearchBox> renders the expected component 1`] = `
   className="pa2"
 >
   <input
+    aria-label="Search robots"
     className="pa3 ba b--green bg-lightest-blue"
     onChange={[Function]}
     placeholder="Search robots"

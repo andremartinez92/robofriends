@@ -5,12 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './RobotsScreen.css';
 import { type RobotData } from '../types';
-import CardList from '../components/CardList';
 import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
-import ScrollableSection from '../components/ScrollableSection';
-import ErrorBoundary from '../components/ErrorBoundary';
 import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
+import RobotsList from './RobotsList';
 
 import { changeSearchField, getRobots } from '../middleware/actions';
 
@@ -33,13 +31,7 @@ function RobotsScreen() {
     <div className="tc">
       <Header />
       <SearchBox onSearchChange={setSearchField} />
-      {(isPending && <h1>Loading...</h1>) || (
-        <ScrollableSection>
-          <ErrorBoundary>
-            <CardList robots={filteredRobots} />
-          </ErrorBoundary>
-        </ScrollableSection>
-      )}
+      <RobotsList isPending={isPending} robots={filteredRobots} />
     </div>
   );
 }
