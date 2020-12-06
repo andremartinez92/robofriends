@@ -2,8 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import rootReducer from '../../middleware/reducers';
 import { NO_DATA_TEXT, ROBO1_TEXT, ROBOTS, ROBOTS_TEXT, TITLE_TEXT } from '../RobotsTestHelpers';
 
 import RobotsScreen from '../RobotsScreen';
@@ -12,6 +14,10 @@ const initialState = {
   search: { searchField: '' },
   robots: { isPending: false, robots: [] },
 };
+
+function createMockStore(initialState) {
+  return createStore(rootReducer, initialState, applyMiddleware(thunk))
+}
 
 function createWrapper(store) {
   return mount(
@@ -22,12 +28,10 @@ function createWrapper(store) {
 }
 
 describe('<RobotsScreen>', () => {
-  const mockStore = configureMockStore([thunk]);
   let mockedStore;
-
   beforeEach(() => {
+    mockedStore = createMockStore(initialState);
     fetch.resetMocks();
-    mockedStore = mockStore(initialState);
   });
 
   describe('when mounted', () => {
@@ -57,10 +61,11 @@ describe('<RobotsScreen>', () => {
     });
   });
 
-  describe.skip('when receives data from URL', () => {
+  describe('when receives data from URL', () => {
     describe('when search field is empty', () => {
       it('renders all results', async () => {
         fetch.mockResponse(JSON.stringify(ROBOTS));
+
         let wrapper;
         await ReactTestUtils.act(async () => {
           wrapper = createWrapper(mockedStore);
@@ -69,14 +74,14 @@ describe('<RobotsScreen>', () => {
         wrapper.update();
         wrapper.update();
 
-        expect(wrapper.find('Card')).toHaveLength(3);
+        expect(wrapper.find('Card')).toHaveLength(2);
         expect(wrapper.text()).toEqual(TITLE_TEXT + ROBOTS_TEXT);
       });
     });
 
     describe('when search field has text', () => {
       it('renders only results that match search', async () => {
-        mockedStore = mockStore({ searchField: '1' });
+        mockedStore = createMockStore({ ...initialState, search: { searchField: '1' } });
 
         fetch.mockResponse(JSON.stringify(ROBOTS));
         let wrapper;
