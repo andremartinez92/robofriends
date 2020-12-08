@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import './App.css';
 import rootReducer from './middleware/reducers';
-import RobotsScreen from './containers/RobotsScreen';
+import RobotsContainer from './containers/RobotsContainer';
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
   ? window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -19,7 +19,7 @@ const store: Object = createStore(
 function App() {
   return (
     <Provider store={store}>
-      <RobotsScreen />
+      <RobotsContainer />
     </Provider>
   );
 }

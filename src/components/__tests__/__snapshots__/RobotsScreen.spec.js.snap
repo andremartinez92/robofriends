@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RobotsScreen renders correctly when loading 1`] = `
+<div
+  className="tc"
+>
+  <Header />
+  <SearchBox />
+  <RobotsList
+    isPending={true}
+    robots={Array []}
+  />
+</div>
+`;
+
+exports[`RobotsScreen renders correctly when there are no robots 1`] = `
+<div
+  className="tc"
+>
+  <Header />
+  <SearchBox />
+  <RobotsList
+    isPending={false}
+    robots={Array []}
+  />
+</div>
+`;
+
+exports[`RobotsScreen renders correctly when there are robots 1`] = `
+<div
+  className="tc"
+>
+  <Header />
+  <SearchBox />
+  <RobotsList
+    isPending={false}
+    robots={
+      Array [
+        Object {
+          "email": "something@email.com",
+          "id": 1,
+          "name": "Robo 1",
+          "username": "robo1",
+        },
+        Object {
+          "email": "random@email.com",
+          "id": 2,
+          "name": "Robo 2",
+          "username": "robo2",
+        },
+      ]
+    }
+  />
+</div>
+`;

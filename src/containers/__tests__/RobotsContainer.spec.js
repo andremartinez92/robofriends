@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../../middleware/reducers';
 import { NO_DATA_TEXT, ROBO1_TEXT, ROBOTS, ROBOTS_TEXT, TITLE_TEXT } from '../../testHelpers/RobotsTestHelpers';
 
-import RobotsScreen from '../RobotsScreen';
+import RobotsContainer from '../RobotsContainer';
 
 const initialState = {
   search: { searchField: '' },
@@ -21,12 +21,12 @@ function createMockStore(state) {
 function createWrapper(store) {
   return mount(
     <Provider store={store}>
-      <RobotsScreen />
+      <RobotsContainer />
     </Provider>
   );
 }
 
-describe('<RobotsScreen>', () => {
+describe('<RobotsContainer>', () => {
   let mockedStore;
   beforeEach(() => {
     mockedStore = createMockStore(initialState);
@@ -73,7 +73,7 @@ describe('<RobotsScreen>', () => {
         wrapper.update();
         wrapper.update();
 
-        expect(wrapper.find('Card')).toHaveLength(2);
+        expect(wrapper.find('RobotsScreen')).toHaveLength(1);
         expect(wrapper.text()).toEqual(TITLE_TEXT + ROBOTS_TEXT);
       });
     });
@@ -90,7 +90,7 @@ describe('<RobotsScreen>', () => {
 
         wrapper.update();
 
-        expect(wrapper.find('Card')).toHaveLength(1);
+        expect(wrapper.find('RobotsScreen')).toHaveLength(1);
         expect(wrapper.text()).toEqual(TITLE_TEXT + ROBO1_TEXT);
       });
     });
@@ -106,7 +106,7 @@ describe('<RobotsScreen>', () => {
         wrapper = createWrapper(mockedStore);
       });
 
-      const { onSearchChange } = wrapper.find('SearchBox').props();
+      const { onSearchChange } = wrapper.find('RobotsScreen').props();
       onSearchChange('a');
 
       expect(spy).toHaveBeenCalledWith({
