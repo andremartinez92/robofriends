@@ -24,6 +24,14 @@ describe('#getRobots', () => {
     mockedStore = configureMockStore([thunk])(undefined);
   });
 
+  it('fetches from the correct url', () => {
+    fetch.mockResponse(JSON.stringify(ROBOTS))
+
+    expect.assertions(1);
+    return mockedStore.dispatch(getRobots()).then(() => {
+      expect(fetch).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/users')
+    })
+  })
 
   it('dispatches success after fetching', () => {
     fetch.mockResponse(JSON.stringify(ROBOTS))
