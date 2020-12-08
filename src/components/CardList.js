@@ -14,7 +14,7 @@ function CardList(props: Props) {
   const { robots } = props;
 
   return (
-    <React.Fragment>
+    <>
       {robots.map(robot => (
         <Card
           key={robot.id}
@@ -23,7 +23,7 @@ function CardList(props: Props) {
           name={robot.name}
         />
       ))}
-    </React.Fragment>
+    </>
   );
 }
 
