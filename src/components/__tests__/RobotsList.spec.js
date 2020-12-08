@@ -15,7 +15,7 @@ describe('RobotsList', () => {
         const wrapper = mount(<RobotsList isPending={false} robots={[]}/>)
 
         // Disabling lint to make test more readable
-        /* eslint-disable no-useless-concat */
+        /* eslint-disable-next-line no-useless-concat */
         expect(wrapper.text()).toEqual(NO_DATA_TEXT);
     })
 
@@ -24,7 +24,7 @@ describe('RobotsList', () => {
 
         const Cards = wrapper.find('Card');
         expect(Cards).toHaveLength(2);
-        /* eslint-disable no-useless-concat */
+        /* eslint-disable-next-line no-useless-concat */
         expect(wrapper.text()).toEqual(ROBOTS_TEXT);
     })
 })
