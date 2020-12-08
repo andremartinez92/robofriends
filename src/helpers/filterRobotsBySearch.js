@@ -1,5 +1,4 @@
 // @flow
-
 import { type RobotData } from '../types';
 
 function filterRobotsBySearch(

@@ -1,8 +1,9 @@
 // @flow
+import { apiCall } from './api';
+import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
 
 import { type Dispatch } from 'redux';
-import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
-import { type Action } from '../types';
+import { type Action, type RobotData } from '../types';
 
 export function changeSearchField(searchField: string): Action {
   return { type: CHANGE_SEARCH_FIELD_TYPE, payload: { searchField } };
@@ -11,8 +12,7 @@ export function changeSearchField(searchField: string): Action {
 export function getRobots() {
   return (dispatch: Dispatch) => {
     dispatch({ type: GET_ROBOTS_TYPES.REQUEST, payload: {} });
-    return fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
+    return apiCall<RobotData[]>('https://jsonplaceholder.typicode.com/users')
       .then(data =>
         dispatch({ type: GET_ROBOTS_TYPES.SUCCESS, payload: { robots: data } })
       )

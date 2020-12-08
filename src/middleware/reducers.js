@@ -1,5 +1,4 @@
 // @flow
-
 import { type Action, type RobotData } from '../types';
 import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
 import { combineReducers } from 'redux';

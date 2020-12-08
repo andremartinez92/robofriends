@@ -3,14 +3,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './RobotsScreen.css';
-import { type RobotData } from '../types';
 import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
-import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
-import RobotsList from './RobotsList';
+import RobotsList from '../components/RobotsList';
 
+import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 import { changeSearchField, getRobots } from '../middleware/actions';
+
+import { type RobotData } from '../types';
+
+import './RobotsScreen.css';
 
 function RobotsScreen() {
   const dispatch = useDispatch();

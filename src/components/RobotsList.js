@@ -3,9 +3,9 @@
 import React from 'react';
 
 import { type RobotData } from '../types';
-import CardList from '../components/CardList';
-import ScrollableSection from '../components/ScrollableSection';
-import ErrorBoundary from '../components/ErrorBoundary';
+import CardList from './CardList';
+import ScrollableSection from './ScrollableSection';
+import ErrorBoundary from './ErrorBoundary';
 
 function RobotsList({ isPending, robots }: { isPending: boolean, robots: RobotData[] }) {
     if (isPending) {
