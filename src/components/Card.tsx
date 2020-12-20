@@ -1,8 +1,6 @@
-// @flow
-
 import React from 'react';
 
-type Props = {
+interface Props {
   email: string,
   id: number,
   name: string,

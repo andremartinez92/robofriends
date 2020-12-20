@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable no-useless-concat */
-import { type RobotData } from '../types';
+import { RobotData } from '../types';
 
 export const TITLE_TEXT = 'Robofriends';
 export const LOADING_TEXT = 'Loading...';

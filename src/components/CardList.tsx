@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
 
-import { type RobotData } from '../types';
+import { RobotData } from '../types';
 
 import Card from './Card';
 
-type Props = {
+interface Props {
   robots: RobotData[],
 };
 

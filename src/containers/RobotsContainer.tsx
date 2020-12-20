@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,16 +6,18 @@ import RobotsScreen from '../components/RobotsScreen';
 import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 import { changeSearchField, getRobots } from '../middleware/actions';
 
-import { type RobotData } from '../types';
+import { RobotData } from '../types';
+import {SearchRobotsState, RobotsState} from '../middleware/types'
 
 function RobotsContainer() {
   const dispatch = useDispatch();
 
-  const searchField: string = useSelector(state => state.search.searchField);
-  const { isPending, robots } = useSelector(state => state.robots);
+  const searchField: string = useSelector((state: {search: SearchRobotsState})  => state.search.searchField);
+  const { isPending, robots } = useSelector((state: {robots:RobotsState }) => state.robots);
 
-  const setSearchField: Function = (searchField: string) =>
+  function setSearchField(searchField: string): void {
     dispatch(changeSearchField(searchField));
+  }
 
   React.useEffect(() => {
     dispatch(getRobots());
@@ -27,8 +27,8 @@ function RobotsContainer() {
 
   return (
     <RobotsScreen
-      isPending={isPending} 
-      onSearchChange={setSearchField} 
+      isPending={isPending}
+      onSearchChange={setSearchField}
       robots={filteredRobots}
     />
   )

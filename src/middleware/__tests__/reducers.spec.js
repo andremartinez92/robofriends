@@ -38,12 +38,6 @@ describe('searchRobotsReducer', () => {
       )
     ).toEqual({ searchField: 'new text' });
   });
-
-  it('should handle empty action case', () => {
-    expect(
-      searchRobotsReducer({ searchField: 'new text' })
-    ).toEqual({ searchField: 'new text' });
-  });
 });
 
 describe('getRobotsReducer', () => {
@@ -93,11 +87,6 @@ describe('getRobotsReducer', () => {
       { ...initialState, robots },
       { type: 'UNMATCHED_TYPE', payload: { robots: [] } }
     );
-    expect(store).toEqual({ ...initialState, robots });
-  });
-
-  it('should handle empty action case', () => {
-    const store = getRobotsReducer( { ...initialState, robots });
     expect(store).toEqual({ ...initialState, robots });
   });
 });

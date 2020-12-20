@@ -7,11 +7,16 @@ import './App.css';
 import rootReducer from './middleware/reducers';
 import RobotsContainer from './containers/RobotsContainer';
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION__?: typeof compose;
+  }
+}
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
   ? window.__REDUX_DEVTOOLS_EXTENSION__()
-  : f => f;
+  : (f: any) => f;
 
-const store: Object = createStore(
+const store = createStore(
   rootReducer,
   compose(applyMiddleware(thunkMiddleware), reduxDevTools)
 );

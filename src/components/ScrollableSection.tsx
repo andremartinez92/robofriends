@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 
 const styles = {
@@ -7,8 +5,8 @@ const styles = {
   height: '800px',
 };
 
-type Props = {
-  children: React$Element<*>,
+interface Props {
+  children: React.ReactNode,
 };
 
 function ScrollableSection(props: Props) {

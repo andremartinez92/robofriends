@@ -1,15 +1,14 @@
-// @flow
 import React from 'react';
 
-import Header from '../components/Header';
-import SearchBox from '../components/SearchBox';
-import RobotsList from '../components/RobotsList';
+import Header from './Header';
+import SearchBox from './SearchBox';
+import RobotsList from './RobotsList';
 
-import { type RobotData } from '../types';
+import { RobotData } from '../types';
 
 import './RobotsScreen.css';
 
-type Props = {
+interface Props {
     isPending: boolean,
     onSearchChange: (searchField: string) => void,
     robots: RobotData[],

@@ -1,11 +1,7 @@
-// @flow
-import { type Action, type RobotData } from '../types';
+import { RobotData } from '../types';
+import { RobotsState, SearchRobotsState, SearchRobotsAction, RequestGetRobotsAction, SuccessGetRobotsAction, FailureGetRobotsAction } from './types';
 import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
 import { combineReducers } from 'redux';
-
-type SearchRobotsState = {
-  searchField: string,
-};
 
 const searchInitialState: SearchRobotsState = {
   searchField: '',
@@ -13,7 +9,7 @@ const searchInitialState: SearchRobotsState = {
 
 export function searchRobotsReducer(
   state: SearchRobotsState = searchInitialState,
-  action: Action = {}
+  action: SearchRobotsAction,
 ): SearchRobotsState {
   switch (action.type) {
     case CHANGE_SEARCH_FIELD_TYPE:
@@ -24,12 +20,6 @@ export function searchRobotsReducer(
   }
 }
 
-type RobotsState = {
-  isPending: boolean,
-  robots: Array<RobotData>,
-  error: string,
-};
-
 const getRobotsInitialState: RobotsState = {
   isPending: false,
   robots: [],
@@ -38,7 +28,7 @@ const getRobotsInitialState: RobotsState = {
 
 export function getRobotsReducer(
   state: RobotsState = getRobotsInitialState,
-  action: Action = {}
+  action: RequestGetRobotsAction | SuccessGetRobotsAction | FailureGetRobotsAction
 ): RobotsState {
   switch (action.type) {
     case GET_ROBOTS_TYPES.REQUEST:

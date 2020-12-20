@@ -1,9 +1,9 @@
-// @flow
 import { apiCall } from './api';
 import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
 
-import { type Dispatch } from 'redux';
-import { type Action, type RobotData } from '../types';
+import { Dispatch } from 'redux';
+import { RobotData } from '../types';
+import { Action } from './types';
 
 export function changeSearchField(searchField: string): Action {
   return { type: CHANGE_SEARCH_FIELD_TYPE, payload: { searchField } };

@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
 
-type Props = {
-  onSearchChange: Function,
+interface Props {
+  onSearchChange: (searchField: string) => void,
 };
 
 function SearchBox(props: Props) {

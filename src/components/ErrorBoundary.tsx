@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
 
-type Props = {
-  children: React$Element<*>,
+interface Props {
+  children: React.ReactNode,
 };
 
 type State = {

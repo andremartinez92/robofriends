@@ -1,6 +1,4 @@
-// @flow
-
-type RequestTypes = {
+interface RequestTypes {
   REQUEST: string,
   SUCCESS: string,
   FAILURE: string,

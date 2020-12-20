@@ -1,8 +1,6 @@
-// @flow
-
 import React from 'react';
 
-import { type RobotData } from '../types';
+import { RobotData } from '../types';
 import CardList from './CardList';
 import ScrollableSection from './ScrollableSection';
 import ErrorBoundary from './ErrorBoundary';
