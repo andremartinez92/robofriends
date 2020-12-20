@@ -9,23 +9,23 @@ import { RobotData } from '../types';
 import './RobotsScreen.css';
 
 interface Props {
-    isPending: boolean,
-    onSearchChange: (searchField: string) => void,
-    robots: RobotData[],
+  isPending: boolean;
+  onSearchChange: (searchField: string) => void;
+  robots: RobotData[];
 }
 
 function RobotsScreen({
-    isPending,
-    onSearchChange,
-    robots
-}: Props) {
-    return (
-        <div className="tc">
-            <Header />
-            <SearchBox onSearchChange={onSearchChange} />
-            <RobotsList isPending={isPending} robots={robots} />
-        </div>
-    );
+  isPending,
+  onSearchChange,
+  robots,
+}: Props): JSX.Element {
+  return (
+    <div className="tc">
+      <Header />
+      <SearchBox onSearchChange={onSearchChange} />
+      <RobotsList isPending={isPending} robots={robots} />
+    </div>
+  );
 }
 
 export default RobotsScreen;

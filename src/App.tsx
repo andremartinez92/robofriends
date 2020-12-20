@@ -18,10 +18,10 @@ const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__
 
 const store = createStore(
   rootReducer,
-  compose(applyMiddleware(thunkMiddleware), reduxDevTools)
+  compose(applyMiddleware(thunkMiddleware), reduxDevTools),
 );
 
-function App() {
+function App(): JSX.Element {
   return (
     <Provider store={store}>
       <RobotsContainer />

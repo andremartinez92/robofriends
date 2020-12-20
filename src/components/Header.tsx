@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header() {
+function Header(): JSX.Element {
   return <h1 className="f1">Robofriends</h1>;
 }
 

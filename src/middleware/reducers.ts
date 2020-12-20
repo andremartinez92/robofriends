@@ -1,6 +1,17 @@
-import { RobotData } from '../types';
-import { RobotsState, SearchRobotsState, SearchRobotsAction, RequestGetRobotsAction, SuccessGetRobotsAction, FailureGetRobotsAction } from './types';
-import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from './constants';
+import {
+  RobotsState,
+  SearchRobotsState,
+  SearchRobotsAction,
+  RequestGetRobotsAction,
+  SuccessGetRobotsAction,
+  FailureGetRobotsAction,
+} from './types';
+import {
+  CHANGE_SEARCH_FIELD_TYPE,
+  GET_ROBOTS_FAILURE_TYPE,
+  GET_ROBOTS_REQUEST_TYPE,
+  GET_ROBOTS_SUCCESS_TYPE,
+} from './constants';
 import { combineReducers } from 'redux';
 
 const searchInitialState: SearchRobotsState = {
@@ -28,14 +39,17 @@ const getRobotsInitialState: RobotsState = {
 
 export function getRobotsReducer(
   state: RobotsState = getRobotsInitialState,
-  action: RequestGetRobotsAction | SuccessGetRobotsAction | FailureGetRobotsAction
+  action:
+    | RequestGetRobotsAction
+    | SuccessGetRobotsAction
+    | FailureGetRobotsAction,
 ): RobotsState {
   switch (action.type) {
-    case GET_ROBOTS_TYPES.REQUEST:
+    case GET_ROBOTS_REQUEST_TYPE:
       return { ...state, isPending: true };
-    case GET_ROBOTS_TYPES.SUCCESS:
+    case GET_ROBOTS_SUCCESS_TYPE:
       return { ...state, robots: action.payload.robots, isPending: false };
-    case GET_ROBOTS_TYPES.FAILURE:
+    case GET_ROBOTS_FAILURE_TYPE:
       return { ...state, error: action.payload.error, isPending: false };
     default:
       return state;

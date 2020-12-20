@@ -17,7 +17,9 @@ describe('<SearchBox>', () => {
 
     describe('when an event is triggered', () => {
       const event = {
-        preventDefault() {},
+        preventDefault() {
+          return null;
+        },
         target: { value: 'new search text' },
       };
 

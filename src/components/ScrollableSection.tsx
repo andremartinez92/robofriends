@@ -6,10 +6,10 @@ const styles = {
 };
 
 interface Props {
-  children: React.ReactNode,
-};
+  children: React.ReactNode;
+}
 
-function ScrollableSection(props: Props) {
+function ScrollableSection(props: Props): JSX.Element {
   const { children } = props;
   return <div style={styles}>{children}</div>;
 }

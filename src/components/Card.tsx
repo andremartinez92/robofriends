@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface Props {
-  email: string,
-  id: number,
-  name: string,
-};
+  email: string;
+  id: number;
+  name: string;
+}
 
-function Card(props: Props) {
+function Card(props: Props): JSX.Element {
   const { email, id, name } = props;
 
   return (

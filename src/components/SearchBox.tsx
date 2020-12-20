@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface Props {
-  onSearchChange: (searchField: string) => void,
-};
+  onSearchChange: (searchField: string) => void;
+}
 
-function SearchBox(props: Props) {
+function SearchBox(props: Props): JSX.Element {
   const { onSearchChange } = props;
 
   return (
@@ -12,7 +12,7 @@ function SearchBox(props: Props) {
       <input
         aria-label="Search robots"
         className="pa3 ba b--green bg-lightest-blue"
-        onChange={event => onSearchChange(event.target.value)}
+        onChange={(event) => onSearchChange(event.target.value)}
         placeholder="Search robots"
         type="search"
       />

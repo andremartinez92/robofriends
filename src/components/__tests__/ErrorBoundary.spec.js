@@ -8,7 +8,7 @@ describe('<ErrorBoundary>', () => {
     const subject = shallow(
       <ErrorBoundary>
         <div>Hello World</div>
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     it('renders the child component', () => {
@@ -28,14 +28,14 @@ describe('<ErrorBoundary>', () => {
     const subject = shallow(
       <ErrorBoundary>
         <div>Hello World</div>
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
     subject.instance().componentDidCatch('error thrown');
     subject.update();
 
     it('renders the error component', () => {
       expect(subject.find('h1').text()).toEqual(
-        'Oops. Something went wrong here.'
+        'Oops. Something went wrong here.',
       );
     });
 

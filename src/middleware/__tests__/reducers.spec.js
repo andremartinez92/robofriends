@@ -12,8 +12,8 @@ describe('searchRobotsReducer', () => {
         {
           type: 'CHANGE_SEARCH_FIELD',
           payload: { searchField: 'bla bla' },
-        }
-      )
+        },
+      ),
     ).toEqual({ searchField: 'bla bla' });
 
     expect(
@@ -22,8 +22,8 @@ describe('searchRobotsReducer', () => {
         {
           type: 'CHANGE_SEARCH_FIELD',
           payload: { searchField: 'abcdefg' },
-        }
-      )
+        },
+      ),
     ).toEqual({ searchField: 'abcdefg' });
   });
 
@@ -34,8 +34,8 @@ describe('searchRobotsReducer', () => {
         {
           type: 'UNMATCHED_TYPE',
           payload: { searchField: 'abcdefg' },
-        }
-      )
+        },
+      ),
     ).toEqual({ searchField: 'new text' });
   });
 });
@@ -85,7 +85,7 @@ describe('getRobotsReducer', () => {
   it('should handle default case', () => {
     const store = getRobotsReducer(
       { ...initialState, robots },
-      { type: 'UNMATCHED_TYPE', payload: { robots: [] } }
+      { type: 'UNMATCHED_TYPE', payload: { robots: [] } },
     );
     expect(store).toEqual({ ...initialState, robots });
   });

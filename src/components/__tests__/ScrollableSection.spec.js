@@ -16,7 +16,7 @@ describe('<ScrollableSection>', () => {
       const subject = shallow(
         <ScrollableSection>
           <div>Hello</div>
-        </ScrollableSection>
+        </ScrollableSection>,
       );
       expect(subject).toMatchSnapshot();
     });
@@ -28,7 +28,7 @@ describe('<ScrollableSection>', () => {
         <ScrollableSection>
           <div>Hello</div>
           <div>World</div>
-        </ScrollableSection>
+        </ScrollableSection>,
       );
       expect(subject).toMatchSnapshot();
     });

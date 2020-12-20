@@ -7,13 +7,17 @@ import filterRobotsBySearch from '../helpers/filterRobotsBySearch';
 import { changeSearchField, getRobots } from '../middleware/actions';
 
 import { RobotData } from '../types';
-import {SearchRobotsState, RobotsState} from '../middleware/types'
+import { SearchRobotsState, RobotsState } from '../middleware/types';
 
-function RobotsContainer() {
+function RobotsContainer(): JSX.Element {
   const dispatch = useDispatch();
 
-  const searchField: string = useSelector((state: {search: SearchRobotsState})  => state.search.searchField);
-  const { isPending, robots } = useSelector((state: {robots:RobotsState }) => state.robots);
+  const searchField: string = useSelector(
+    (state: { search: SearchRobotsState }) => state.search.searchField,
+  );
+  const { isPending, robots } = useSelector(
+    (state: { robots: RobotsState }) => state.robots,
+  );
 
   function setSearchField(searchField: string): void {
     dispatch(changeSearchField(searchField));
@@ -31,7 +35,7 @@ function RobotsContainer() {
       onSearchChange={setSearchField}
       robots={filteredRobots}
     />
-  )
+  );
 }
 
 export default RobotsContainer;

@@ -5,15 +5,15 @@ import { RobotData } from '../types';
 import Card from './Card';
 
 interface Props {
-  robots: RobotData[],
-};
+  robots: RobotData[];
+}
 
-function CardList(props: Props) {
+function CardList(props: Props): JSX.Element {
   const { robots } = props;
 
   return (
     <>
-      {robots.map(robot => (
+      {robots.map((robot: RobotData) => (
         <Card
           key={robot.id}
           email={robot.email}

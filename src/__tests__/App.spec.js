@@ -10,7 +10,7 @@ describe('<App>', () => {
   });
 
   it('renders the robots container', () => {
-    const wrapper = mount(<App/>);
+    const wrapper = mount(<App />);
     expect(wrapper.find('RobotsContainer')).toHaveLength(1);
-  })
+  });
 });

@@ -5,7 +5,13 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../../middleware/reducers';
-import { NO_DATA_TEXT, ROBO1_TEXT, ROBOTS, ROBOTS_TEXT, TITLE_TEXT } from '../../testHelpers/RobotsTestHelpers';
+import {
+  NO_DATA_TEXT,
+  ROBO1_TEXT,
+  ROBOTS,
+  ROBOTS_TEXT,
+  TITLE_TEXT,
+} from '../../testHelpers/RobotsTestHelpers';
 
 import RobotsContainer from '../RobotsContainer';
 
@@ -15,14 +21,14 @@ const initialState = {
 };
 
 function createMockStore(state) {
-  return createStore(rootReducer, state, applyMiddleware(thunk))
+  return createStore(rootReducer, state, applyMiddleware(thunk));
 }
 
 function createWrapper(store) {
   return mount(
     <Provider store={store}>
       <RobotsContainer />
-    </Provider>
+    </Provider>,
   );
 }
 
@@ -42,7 +48,7 @@ describe('<RobotsContainer>', () => {
 
       expect(fetch.mock.calls.length).toEqual(1);
       expect(fetch.mock.calls[0][0]).toEqual(
-        'https://jsonplaceholder.typicode.com/users'
+        'https://jsonplaceholder.typicode.com/users',
       );
     });
   });
@@ -80,7 +86,10 @@ describe('<RobotsContainer>', () => {
 
     describe('when search field has text', () => {
       it('renders only results that match search', async () => {
-        mockedStore = createMockStore({ ...initialState, search: { searchField: '1' } });
+        mockedStore = createMockStore({
+          ...initialState,
+          search: { searchField: '1' },
+        });
 
         fetch.mockResponse(JSON.stringify(ROBOTS));
         let wrapper;
@@ -94,7 +103,7 @@ describe('<RobotsContainer>', () => {
         expect(wrapper.text()).toEqual(TITLE_TEXT + ROBO1_TEXT);
       });
     });
-  })
+  });
 
   describe('when search field is changed', () => {
     it('dispatches the expected action', async () => {

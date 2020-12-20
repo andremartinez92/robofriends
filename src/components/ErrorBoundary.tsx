@@ -1,11 +1,11 @@
 import React from 'react';
 
 interface Props {
-  children: React.ReactNode,
-};
+  children: React.ReactNode;
+}
 
 type State = {
-  hasError: boolean,
+  hasError: boolean;
 };
 
 class ErrorBoundary extends React.Component<Props, State> {
@@ -16,11 +16,11 @@ class ErrorBoundary extends React.Component<Props, State> {
     };
   }
 
-  componentDidCatch(error: any, info: any) {
+  componentDidCatch(): void {
     this.setState({ hasError: true });
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError) {
       return <h1>Oops. Something went wrong here.</h1>;
     }

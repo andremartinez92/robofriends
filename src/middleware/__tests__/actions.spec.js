@@ -1,7 +1,12 @@
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { ROBOTS } from '../../testHelpers/RobotsTestHelpers';
-import { CHANGE_SEARCH_FIELD_TYPE, GET_ROBOTS_TYPES } from '../constants';
+import {
+  CHANGE_SEARCH_FIELD_TYPE,
+  GET_ROBOTS_FAILURE_TYPE,
+  GET_ROBOTS_REQUEST_TYPE,
+  GET_ROBOTS_SUCCESS_TYPE,
+} from '../constants';
 
 import { changeSearchField, getRobots } from '../actions';
 
@@ -25,40 +30,42 @@ describe('#getRobots', () => {
   });
 
   it('fetches from the correct url', () => {
-    fetch.mockResponse(JSON.stringify(ROBOTS))
+    fetch.mockResponse(JSON.stringify(ROBOTS));
 
     expect.assertions(1);
     return mockedStore.dispatch(getRobots()).then(() => {
-      expect(fetch).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/users')
-    })
-  })
+      expect(fetch).toHaveBeenCalledWith(
+        'https://jsonplaceholder.typicode.com/users',
+      );
+    });
+  });
 
   it('dispatches success after fetching', () => {
-    fetch.mockResponse(JSON.stringify(ROBOTS))
+    fetch.mockResponse(JSON.stringify(ROBOTS));
 
     const expectedActions = [
-      { type: GET_ROBOTS_TYPES.REQUEST, payload: {} },
-      { type: GET_ROBOTS_TYPES.SUCCESS, payload: { robots: ROBOTS } }
+      { type: GET_ROBOTS_REQUEST_TYPE, payload: {} },
+      { type: GET_ROBOTS_SUCCESS_TYPE, payload: { robots: ROBOTS } },
     ];
 
     expect.assertions(1);
     return mockedStore.dispatch(getRobots()).then(() => {
-      expect(mockedStore.getActions()).toEqual(expectedActions)
-    })
-  })
+      expect(mockedStore.getActions()).toEqual(expectedActions);
+    });
+  });
 
   it('dispatches failure after rejection', () => {
     const error = new Error('some error');
-    fetch.mockReject(error)
+    fetch.mockReject(error);
 
     const expectedActions = [
-      { type: GET_ROBOTS_TYPES.REQUEST, payload: {} },
-      { type: GET_ROBOTS_TYPES.FAILURE, payload: { error } }
+      { type: GET_ROBOTS_REQUEST_TYPE, payload: {} },
+      { type: GET_ROBOTS_FAILURE_TYPE, payload: { error } },
     ];
 
     expect.assertions(1);
     return mockedStore.dispatch(getRobots()).then(() => {
-      expect(mockedStore.getActions()).toEqual(expectedActions)
-    })
-  })
-})
+      expect(mockedStore.getActions()).toEqual(expectedActions);
+    });
+  });
+});
